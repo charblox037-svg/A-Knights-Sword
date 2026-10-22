@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Runtime.CompilerServices;
 
 public class Player : MonoBehaviour
 {
@@ -14,17 +15,22 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private Vector3 moveDirection;
+
+    // dialogue goes here?
+    //static public bool dialogue = false;
+    //private int index = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         ConsistentDownwardVelocity();
         MoveCharacter();
         HandleJumping();
+    }
 
         void MoveCharacter()
         {
@@ -50,5 +56,13 @@ public class Player : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         }
+
+
+        private void FixedUpdate()
+    {
+        //if(!dialogue)
+     //   {
+            MoveCharacter();
+      //  }
     }
 }
